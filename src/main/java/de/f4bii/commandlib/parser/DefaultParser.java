@@ -7,7 +7,6 @@ import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DefaultParser {
-
     public static void registerAll() {
         AdapterWrapper.register(String.class, in -> in);
         AdapterWrapper.register(int.class, Integer::parseInt);
@@ -26,5 +25,4 @@ public class DefaultParser {
         AdapterWrapper.register(Character.class, in -> in.charAt(0));
         AdapterWrapper.register(UUID.class, UUID::fromString);
     }
-
 }

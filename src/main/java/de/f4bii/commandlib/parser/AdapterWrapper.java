@@ -3,6 +3,7 @@ package de.f4bii.commandlib.parser;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 /**
  * Date: 02.08.2021
@@ -30,7 +31,7 @@ public class AdapterWrapper {
         adapters.put(type, adapter);
     }
 
-    // TODO möglich machen, dass man direkt mit lambda einen CommandParser registrieren kann.
+    // Lambdas not working
     public static void register(CommandParser<?> adapter) {
         Type[] genericInterfaces = adapter.getClass().getGenericInterfaces();
         for (Type genericInterface : genericInterfaces) {
@@ -39,7 +40,7 @@ public class AdapterWrapper {
                 for (Type genericType : genericTypes) {
                     if (((ParameterizedType) genericInterface).getRawType().equals(CommandParser.class)) {
                         System.out.println("[CommandAPI] Registering: '" + genericType.getTypeName() + "' as an CommandParser");
-                        adapters.put(genericType, adapter);
+                        register(genericType.getClass(), adapter);
                     }
                 }
             }
