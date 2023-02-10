@@ -1,0 +1,4 @@
+name: CommandLib
+main: de.f4bii.commandlib.CommandLib
+version: ${version}
+author: FabiHBBBT
